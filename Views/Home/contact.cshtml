@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+
+<body>
+    <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+              
+                <a class="navbar-brand" href="#">ANJAR <span class="glyphicon glyphicon glyphicon-road" aria-hidden="true"></span></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a href="~/Home/about">ABOUT</a></li>
+                    <li><a href="~/Home/Schedule">SCHEDULE</a></li>
+                    <li><a href="~/Home/terminal">TERMINALS</a></li>
+                    <li><a href="~/Home/register">REGISTER</a></li>
+                    <li><a href="~/Home/login">LOGIN</a></li>
+                    <li><a href="~/Home/contact">CONTACT</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--END NAV SECTION -->
+    <!--CONTACT SECTION -->
+    <div id="contact-section">
+        <div class="container">
+            <div class="row main-top-margin text-center" style="background-color: deepskyblue; border-top-right-radius: 1em; border-top-left-radius: 1em; border-bottom-right-radius: 1em; border-bottom-left-radius: 1em; ">
+                <div class="col-md-8 col-md-offset-2 " >
+                    <h1 style="color:aliceblue;">Need Help ? Contact Us !</h1>
+                    <h4></h4>
+                </div>
+            </div>
+            <!-- ./ Main Heading-->
+            <div class="row main-low-margin">
+                <div class="col-md-12  col-sm-12 ">
+                    <div class="col-md-6  ">
+                        <h3> Our Work Location</h3>
+                        <hr />
+                        <p>
+                            Multan Road, Lahore, Pakistan.<br />
+                            UAN: 111-007-191 / 03311-277-020<br />
+                            FAX: 042-5914824,<br />
+                            Call: +92-00-89-009<br />
+                            Email: sendAt@anjar.com.pk<br />
+                        </p>
+
+                    </div>
+                    <div class="col-md-6  ">
+                        <h3>Drop Us Line Now ! </h3>
+                        <hr />
+                        <form action="~/User/confirmForgetPass" method="post">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required="required" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required="required" placeholder="Email address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <Select class="form-control" required="required" id="country" name="country">
+                                            <option value="0">Select Your Country</option>
+                                            <option value="Pakistan">Pakistan</option>
+                                            <option value="U.A.E">U.A.E</option>
+                                            <option value="Iran">Iran</option>
+                                            <option value="Saudia Arabia">Saudia Arabia</option>
+                                            
+                                           </Select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <select class="form-control" required="required" id="city" name="city">
+                                            <option value="0">Select Your City</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required="required" placeholder="Subject">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Ref. (IF any)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <textarea name="message" id="message" required="required" class="form-control" rows="3" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ./ Row Content-->
+            <div class="row ">
+                <div class="col-md-12">
+                    <h5>
+
+                        <strong>Important  Note :  </strong>  In any case of difficulty, you can call our customer service representatives.
+
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END CONTACT SECTION -->
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+
+            $('#country').change(function () {
+               
+                var country = $('#country').val();
+              
+                $.getJSON("/Home/getCity?country=" + country, function (data) {
+                   
+                    $.each(data, function (i, item) {
+                       
+                        $('#city').append("<option value=" + item + ">" + item + "</option>");
+                        
+                    });
+
+                });
+               // $('#city').reset();
+
+            });
+
+
+        });
+    </script>
+
+
+
+    
+   <style>
+       body {
+           background: #76b852; /* fallback for old browsers */
+           background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+           background: -moz-linear-gradient(right, #76b852, #8DC26F);
+           background: -o-linear-gradient(right, #76b852, #8DC26F);
+           background: linear-gradient(to left, #76b852, #8DC26F);
+           font-family: "Roboto", sans-serif;
+           -webkit-font-smoothing: antialiased;
+           -moz-osx-font-smoothing: grayscale;
+       }
+       </style>
+</body>
+</html>
+

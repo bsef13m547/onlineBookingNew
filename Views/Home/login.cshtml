@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+
+<body>
+    <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand" href="#">ANJAR <span class="glyphicon glyphicon glyphicon-road" aria-hidden="true"></span></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a href="~/Home/about">ABOUT</a></li>
+                    <li><a href="~/Home/Schedule">SCHEDULE</a></li>
+                    <li><a href="~/Home/terminal">TERMINALS</a></li>
+                    <li><a href="~/Home/register">REGISTER</a></li>
+                    <li><a href="~/Home/login">LOGIN</a></li>
+                    <li><a href="~/Home/contact">CONTACT</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--END NAV SECTION -->
+    <br>
+    <br>
+    <br><br>
+<br><br>
+    <!--login-->
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        @using (Html.BeginForm("checkForLogin", "Home"))
+        {
+            @Html.TextBox("user");
+            @Html.Password("pass");
+              
+            <input type="submit" name="login" class="login login-submit" value="login">
+            
+            
+        }
+        <div class="login-help">
+            @Html.ActionLink("Login", "login", "Home") • @Html.ActionLink("Forget Password", "forgetPass", "User")
+        </div>
+        <div >
+            @if (ViewBag.loginFailed == "true")
+            {
+                <p style="color:red; font-size:smaller">Incorrect Username and Password</p>
+            }
+        </div>
+
+        </div>
+ 
+      
+    
+    
+        
+        <!--end of login-->
+    
+        <br><br><br>
+        <style>
+            body {
+                background: #76b852; /* fallback for old browsers */
+                background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+                background: -moz-linear-gradient(right, #76b852, #8DC26F);
+                background: -o-linear-gradient(right, #76b852, #8DC26F);
+                background: linear-gradient(to left, #76b852, #8DC26F);
+                font-family: "Roboto", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        </style>
+</body>
+</html>
+

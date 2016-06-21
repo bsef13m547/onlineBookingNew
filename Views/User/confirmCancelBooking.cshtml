@@ -1,0 +1,46 @@
+﻿@model EAD_Project.Models.BookedUser
+<br><br>
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Booking Details</legend>
+
+    <div>
+
+        Ref. ID :  @Model.bookingRef
+    </div>
+
+    <div>
+        Username : @Model.userName
+    </div>
+    <div>
+        Fare: @Model.fare
+    </div>
+    <div>
+        Booked Seats : @Model.noOfSeats
+    </div>
+    <div>
+        Boarding Terminal : @Model.boardingTerminal
+    </div>
+    <div>
+         @using (Html.BeginForm())
+{
+
+    <input type="submit" value="Cancel Booking" />
+}
+    </div>
+    </fieldset>
+    
+    <br><br><br><br><br><br><br><br>
+    <style>
+        body {
+            background: #76b852; /* fallback for old browsers */
+            background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+            background: -moz-linear-gradient(right, #76b852, #8DC26F);
+            background: -o-linear-gradient(right, #76b852, #8DC26F);
+            background: linear-gradient(to left, #76b852, #8DC26F);
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<br><br>

@@ -1,0 +1,83 @@
+﻿@model EAD_Project.Models.Bus
+  <!-- NAV SECTION -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">ANJAR <span class="glyphicon glyphicon glyphicon-road" aria-hidden="true"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="~/Admin/adminHome"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                <li><a href="~/Admin/editBuses">EDIT BUSES</a></li>
+                <li><a href="~/Admin/editTerminal">EDIT TERMINALS</a></li>
+                <li><a href="~/Admin/viewBookings">VIEW BOOKINGS</a></li>
+                <li><a href="~/Home/logout">LOGOUT</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!--END NAV SECTION -->
+<br><br><br>
+<fieldset>
+    <legend>Buses</legend>
+
+    <div>
+
+        Bus Id:  @Model.Bus_Id
+    </div>
+
+    <div>
+        Total Seats : @Model.TotalSeat
+    </div>
+    <div>
+        Departure Date And Time : @Model.Dep_DateTime
+    </div>
+    <div>
+        Return Date And Time : @Model.Ret_DateTime
+    </div>
+    <div>
+        Trip Type : @Model.Trip_Type
+    </div>
+    <div>
+        Origin : @Model.Origin
+    </div>
+    <div>
+        Destination : @Model.Destination
+    </div>
+    <div>
+        No of Seats Available : @Model.noOfSeatAvailable
+    </div>
+    <div>
+       Fare Of One Seat : @Model.fareOneSeat
+    </div>
+    <div>
+        Terminal : @Model.Terminal
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "updateBuses", new { id = Model.Bus_Id }) |
+    @Html.ActionLink("Back to List", "adminPanel")
+</p>
+<br><br><br>
+<br><br><br>
+<style>
+    body {
+        background: #76b852; /* fallback for old browsers */
+        background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+        background: -moz-linear-gradient(right, #76b852, #8DC26F);
+        background: -o-linear-gradient(right, #76b852, #8DC26F);
+        background: linear-gradient(to left, #76b852, #8DC26F);
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    </style>
+

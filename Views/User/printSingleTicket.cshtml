@@ -1,0 +1,27 @@
+﻿@model EAD_Project.Models.BookedUser
+
+
+    <br><br><br>
+<br><br><br>
+    <fieldset>
+        <legend>Buses</legend>
+
+        <div>
+
+            Booking Refrence:  @Model.bookingRef
+        </div>
+
+        <div>
+            Username : @Model.userName
+        </div>
+        <div>
+            Booked Seats: @Model.noOfSeats
+        </div>
+
+        <div>
+            Total Fare : @Model.fare
+        </div>
+    </fieldset>
+    <a href="~/User/ExportPDF/@Model.bookingRef">Print Ticket</a>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>

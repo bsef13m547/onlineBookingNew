@@ -1,0 +1,533 @@
+﻿@model List<EAD_Project.Models.Bus>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Content/base.css">
+    <link rel="stylesheet" href="~/Content/skeleton.css">
+    <link rel="stylesheet" href="~/Content/layout.css">
+    </head>
+<body>
+    <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#">ANJAR <span class="glyphicon glyphicon glyphicon-road" aria-hidden="true"></span></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/User/userHome"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a href="~/User/userAbout">ABOUT</a></li>
+                    <li><a href="~/User/userSchedule">SCHEDULE</a></li>
+                    <li><a href="~/User/userTerminal">TERMINALS</a></li>
+                    <li><a href="~/User/makeBookings">MAKE BOOKING</a></li>
+                    <li><a href="~/User/cancelBooking">CANCEL BOOKING</a></li>
+                    <li><a href="~/User/viewETicket">VIEW E-TICKET</a></li>
+                    <li><a href="~/Home/logout">LOGOUT</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <br><br>
+    <!--END NAV SECTION -->
+    <div class="row main-top-margin text-center">
+        <div class="col-md-8 col-md-offset-2 " style="background-color: deepskyblue; border-top-right-radius: 1em; border-top-left-radius: 1em; border-bottom-right-radius: 1em; border-bottom-left-radius: 1em; ">
+            <h1 style="color:aliceblue;">Search For Your Route!!</h1>
+            <h4></h4>
+        </div>
+    </div>
+
+       <section class="webdesigntuts-workshop">
+        <form action="~/User/makeBookings" method="get">
+            <input type="search" name="origin" placeholder="Origin">
+            <input type="search" name="destination" placeholder="Destination">
+            <input type="search" name="depDate" placeholder="Departure Date">
+            <input type="search" name="retDate" placeholder="Return Date">
+            <button>Search</button>
+        </form>
+    </section>
+
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <center>
+    <table>
+        <thead>
+        <tr>    
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Departure Date & Time</th>
+            <th>Return Date & Time</th>
+            <th>Trip Type</th>
+            <th>Available Seats</th>
+            <th>Fare/seat</th>
+            <th>Terminal</th>
+            <th>Start Booking</th>
+        </tr>
+            </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Origin
+                </td>
+                <td>
+                    @item.Destination
+                </td>
+                <td>
+                    @item.Dep_DateTime
+                </td>
+                <td>
+                    @item.Ret_DateTime
+                </td>
+                <td>
+                    @item.Trip_Type
+                </td>
+               
+                <td>
+                    @item.noOfSeatAvailable
+                </td>
+                <td>
+                    @item.fareOneSeat
+                </td>
+                <td>
+                    @item.Terminal
+                </td>
+
+                <td>
+
+                  
+                    <a href="~/User/startBooking/@item.Bus_Id" id="navigator">Booking</a>
+                   
+                </td>
+                
+            </tr>
+        }
+            </tbody>
+        </table></center>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br><br>
+     
+        <!-- Primary Page Layout -->
+        @Scripts.Render("~/bundles/jquery")
+        <script>
+            $('.message a').click(function () {
+                $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+            });
+
+            $(document).ready(function () {
+                $('#t_name').focusout(function () {
+
+                    var Name = $('#t_name').val();
+                    alert("working");
+
+                    $.getJSON("/Admin/CheckTerName?t_name=" + Name, function (data) {
+
+                        if (data == null) {
+                            $('#t_city').text("Terminal does not already exists.");
+                        }
+                        else {
+                            $('#t_city').text(data.getJSON);
+                        }
+
+                    });
+
+
+                });
+            });
+        </script>
+        <style>
+            #navigator {
+                position: absolute;
+               // top: 199px;
+                //left: 0;
+                z-index: 100;
+            }
+            .login-page {
+                width: 360px;
+                padding: 8% 0 0;
+                margin: auto;
+            }
+
+            .form {
+                position: relative;
+                z-index: 1;
+                background: #FFFFFF;
+                max-width: 360px;
+                margin: 0 auto 100px;
+                padding: 45px;
+                text-align: center;
+                box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+            }
+
+                .form input {
+                    font-family: "Roboto", sans-serif;
+                    outline: 0;
+                    background: #f2f2f2;
+                    width: 100%;
+                    border: 0;
+                    margin: 0 0 15px;
+                    padding: 15px;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                }
+
+                .form button {
+                    font-family: "Roboto", sans-serif;
+                    text-transform: uppercase;
+                    outline: 0;
+                    background: #4CAF50;
+                    width: 100%;
+                    border: 0;
+                    padding: 15px;
+                    color: #FFFFFF;
+                    font-size: 14px;
+                    -webkit-transition: all 0.3 ease;
+                    transition: all 0.3 ease;
+                    cursor: pointer;
+                }
+
+                    .form button:hover, .form button:active, .form button:focus {
+                        background: #43A047;
+                    }
+
+                .form .message {
+                    margin: 15px 0 0;
+                    color: #b3b3b3;
+                    font-size: 12px;
+                }
+
+                    .form .message a {
+                        color: #4CAF50;
+                        text-decoration: none;
+                    }
+
+                .form .register-form {
+                    display: none;
+                }
+
+            .container1 {
+                position: relative;
+                z-index: 1;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+                .container1:before, .container1:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+
+                .container1 .info {
+                    margin: 50px auto;
+                    text-align: center;
+                }
+
+                    .container1 .info h1 {
+                        margin: 0 0 15px;
+                        padding: 0;
+                        font-size: 36px;
+                        font-weight: 300;
+                        color: #1a1a1a;
+                    }
+
+                    .container1 .info span {
+                        color: #4d4d4d;
+                        font-size: 12px;
+                    }
+
+                        .container1 .info span a {
+                            color: #000000;
+                            text-decoration: none;
+                        }
+
+                        .container1 .info span .fa {
+                            color: #EF3B3A;
+                        }
+
+            body {
+                background: #76b852; /* fallback for old browsers */
+                background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+                background: -moz-linear-gradient(right, #76b852, #8DC26F);
+                background: -o-linear-gradient(right, #76b852, #8DC26F);
+                background: linear-gradient(to left, #76b852, #8DC26F);
+                font-family: "Roboto", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+
+            .webdesigntuts-workshop {
+                /*background: #151515;*/
+                height: 100%;
+                position: absolute;
+                text-align: center;
+                width: 100%;
+            }
+
+                .webdesigntuts-workshop:before,
+                .webdesigntuts-workshop:after {
+                    content: '';
+                    display: block;
+                    height: 1px;
+                    left: 50%;
+                    margin: 0 0 0 -400px;
+                    position: absolute;
+                    width: 800px;
+                }
+
+                .webdesigntuts-workshop:before {
+                    background: #444;
+                    background: linear-gradient(left, #151515, #444, #151515);
+                    top: 192px;
+                }
+
+                .webdesigntuts-workshop:after {
+                    background: #000;
+                    background: linear-gradient(left, #151515, #000, #151515);
+                    top: 191px;
+                }
+
+                .webdesigntuts-workshop form {
+                    background: #111;
+                    background: linear-gradient(#1b1b1b, #111);
+                    border: 1px solid #000;
+                    border-radius: 5px;
+                    box-shadow: inset 0 0 0 1px #272727;
+                    display: inline-block;
+                    font-size: 0px;
+                    margin: 150px auto 0;
+                    padding: 20px;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .webdesigntuts-workshop input {
+                    background: #222;
+                    background: linear-gradient(#333, #222);
+                    border: 1px solid #444;
+                    border-radius: 5px 0 0 5px;
+                    box-shadow: 0 2px 0 #000;
+                    color: #888;
+                    display: block;
+                    float: left;
+                    font-family: 'Cabin', helvetica, arial, sans-serif;
+                    font-size: 13px;
+                    font-weight: 400;
+                    height: 40px;
+                    margin: 0;
+                    padding: 0 10px;
+                    text-shadow: 0 -1px 0 #000;
+                    width: 200px;
+                }
+
+            .ie .webdesigntuts-workshop input {
+                line-height: 40px;
+            }
+
+            .webdesigntuts-workshop input::-webkit-input-placeholder {
+                color: #888;
+            }
+
+            .webdesigntuts-workshop input:-moz-placeholder {
+                color: #888;
+            }
+
+            .webdesigntuts-workshop input:focus {
+                animation: glow 800ms ease-out infinite alternate;
+                background: #222922;
+                background: linear-gradient(#333933, #222922);
+                border-color: #393;
+                box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+                color: #efe;
+                outline: none;
+            }
+
+                .webdesigntuts-workshop input:focus::-webkit-input-placeholder {
+                    color: #efe;
+                }
+
+                .webdesigntuts-workshop input:focus:-moz-placeholder {
+                    color: #efe;
+                }
+
+            .webdesigntuts-workshop button {
+                background: #222;
+                background: linear-gradient(#333, #222);
+                box-sizing: content-box;
+                border: 1px solid #444;
+                border-left-color: #000;
+                border-radius: 0 5px 5px 0;
+                box-shadow: 0 2px 0 #000;
+                color: #fff;
+                display: block;
+                float: left;
+                font-family: 'Cabin', helvetica, arial, sans-serif;
+                font-size: 13px;
+                font-weight: 400;
+                height: 40px;
+                line-height: 40px;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                text-shadow: 0 -1px 0 #000;
+                width: 80px;
+            }
+
+                .webdesigntuts-workshop button:hover,
+                .webdesigntuts-workshop button:focus {
+                    background: #292929;
+                    background: linear-gradient(#393939, #292929);
+                    color: #5f5;
+                    outline: none;
+                }
+
+                .webdesigntuts-workshop button:active {
+                    background: #292929;
+                    background: linear-gradient(#393939, #292929);
+                    box-shadow: 0 1px 0 #000, inset 1px 0 1px #222;
+                    top: 1px;
+                }
+
+            glow {
+                0%;
+
+            {
+                border-color: #393;
+                box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+            }
+
+            100% {
+                border-color: #6f6;
+                box-shadow: 0 0 20px rgba(0,255,0,.6), inset 0 0 10px rgba(0,255,0,.4), 0 2px 0 #000;
+            }
+
+            }
+            /*table css here*/
+            strong {
+                font-weight: bold;
+            }
+
+            em {
+                font-style: italic;
+            }
+
+            table {
+                background: #f5f5f5;
+                border-collapse: separate;
+                box-shadow: inset 0 1px 0 #fff;
+                font-size: 12px;
+                line-height: 24px;
+                margin: 30px auto;
+                text-align: left;
+                width: 800px;
+            }
+
+            th {
+                background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
+                border-left: 1px solid #555;
+                border-right: 1px solid #777;
+                border-top: 1px solid #555;
+                border-bottom: 1px solid #333;
+                box-shadow: inset 0 1px 0 #999;
+                color: #fff;
+                font-weight: bold;
+                padding: 10px 15px;
+                position: relative;
+                text-shadow: 0 1px 0 #000;
+            }
+
+                th:after {
+                    background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
+                    content: '';
+                    display: block;
+                    height: 25%;
+                    left: 0;
+                    margin: 1px 0 0 0;
+                    position: absolute;
+                    top: 25%;
+                    width: 100%;
+                }
+
+                th:first-child {
+                    border-left: 1px solid #777;
+                    box-shadow: inset 1px 1px 0 #999;
+                }
+
+                th:last-child {
+                    box-shadow: inset -1px 1px 0 #999;
+                }
+
+            td {
+                border-right: 1px solid #fff;
+                border-left: 1px solid #e8e8e8;
+                border-top: 1px solid #fff;
+                border-bottom: 1px solid #e8e8e8;
+                padding: 10px 15px;
+                position: relative;
+                transition: all 300ms;
+            }
+
+                td:first-child {
+                    box-shadow: inset 1px 0 0 #fff;
+                }
+
+                td:last-child {
+                    border-right: 1px solid #e8e8e8;
+                    box-shadow: inset -1px 0 0 #fff;
+                }
+
+            tr {
+                background: url(http://jackrugile.com/images/misc/noise-diagonal.png);
+            }
+
+                tr:nth-child(odd) td {
+                    background: #f1f1f1 url(http://jackrugile.com/images/misc/noise-diagonal.png);
+                }
+
+                tr:last-of-type td {
+                    box-shadow: inset 0 -1px 0 #fff;
+                }
+
+                    tr:last-of-type td:first-child {
+                        box-shadow: inset 1px -1px 0 #fff;
+                    }
+
+                    tr:last-of-type td:last-child {
+                        box-shadow: inset -1px -1px 0 #fff;
+                    }
+
+            tbody:hover td {
+                color: transparent;
+                text-shadow: 0 0 3px #aaa;
+            }
+
+            tbody:hover tr:hover td {
+                color: #444;
+                text-shadow: 0 1px 0 #fff;
+            }
+
+     
+        </style>
+
+
+
+</body>
+</html>
+

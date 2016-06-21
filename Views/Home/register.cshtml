@@ -1,0 +1,193 @@
+﻿@model EAD_Project.Models.Register
+<!DOCTYPE html>
+
+<html lang="en">
+
+<body>
+    <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               
+                <a class="navbar-brand" href="#">ANJAR <span class="glyphicon glyphicon glyphicon-road" aria-hidden="true"></span></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a href="~/Home/about">ABOUT</a></li>
+                    <li><a href="~/Home/Schedule">SCHEDULE</a></li>
+                    <li><a href="~/Home/terminal">TERMINALS</a></li>
+                    <li><a href="~/Home/register">REGISTER</a></li>
+                    <li><a href="~/Home/login">LOGIN</a></li>
+                    <li><a href="~/Home/contact">CONTACT</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <br><br><br>
+    <!--END NAV SECTION  -->
+ 
+    <div class="row main-top-margin text-center" >
+        <div class="col-md-8 col-md-offset-2 " style="background-color: deepskyblue; border-top-right-radius: 1em; border-top-left-radius: 1em; border-bottom-right-radius: 1em; border-bottom-left-radius: 1em; ">
+            <h1 style="color:aliceblue;">Want To Make Booking? Register yourself first!!</h1>
+            <h4></h4>
+        </div>
+    </div>
+    <br><br>
+   
+    <div id="wrapper">
+        @using (Html.BeginForm("register","Home",FormMethod.Post,new { enctype = "multipart/form-data" }))
+        { 
+            <fieldset>
+            <legend>Create Your ANJAR Account</legend>
+            <div>
+                <input type="file" name="user_image" placeholder="Upload Photo" />
+                @Html.ValidationMessageFor(model => model.imgFile)
+             </div>
+             <div class="editor-label">
+                  @Html.LabelFor(model => model.userName)
+             </div>
+             <div class="textbox-field">
+                  @Html.TextBoxFor(model => model.userName, new { id = "u_id" })
+                  <br>
+                  @Html.ValidationMessageFor(model => model.userName)
+             </div>
+            <div id="err">
+            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.firstName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.firstName)
+                    <br>
+                    @Html.ValidationMessageFor(model => model.firstName)
+                </div>
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.lastName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.lastName)
+                    <br>
+                    @Html.ValidationMessageFor(model => model.lastName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.mobileNumber)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.mobileNumber)
+                    <br>
+                    @Html.ValidationMessageFor(model => model.mobileNumber)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.email)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.email)
+                    <br>
+                    @Html.ValidationMessageFor(model => model.email)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.password)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(model => model.password)
+                    <br>
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+                <br>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.secQuestion)
+                </div>
+                <div class="editor-field">
+                    @{
+                       var items = new List<SelectListItem> { new SelectListItem { Value = "pet's name'", Text = "What is your pets's name?" ,Selected=true} ,
+                                                              new SelectListItem { Value = "uncle's name'", Text = "What is your your favourite uncle's name?"},
+                                                              new SelectListItem { Value = "best friend", Text = "What is your best friend name?"},
+                                                              new SelectListItem { Value = "favourite author", Text = "What is the name of your favourite author?"}};
+                    }
+                    <br>
+                    @Html.DropDownListFor(model=>model.secQuestion,(IEnumerable<SelectListItem>)items)
+                    @Html.ValidationMessageFor(model => model.secQuestion)
+                </div>
+                <br>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.secAnswer)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.secAnswer)
+                    <br>
+                    @Html.ValidationMessageFor(model => model.secAnswer)
+                </div>
+                <br>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.age)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.age)
+                    <br>
+                    @Html.ValidationMessageFor(model => model.age)
+                </div>
+                <br>
+                <input type="submit" id="b1" name="submit" value="Register" />
+            </fieldset>
+        }
+       
+        </div>
+        
+    <style>
+        #err{color:red}
+        body {
+            background: #76b852; /* fallback for old browsers */
+            background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+            background: -moz-linear-gradient(right, #76b852, #8DC26F);
+            background: -o-linear-gradient(right, #76b852, #8DC26F);
+            background: linear-gradient(to left, #76b852, #8DC26F);
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        </style>
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+            
+            $('#u_id').focusout(function () {
+
+                var userName = $('#u_id').val();
+
+                $.getJSON("/Home/CheckUserName?u_id="+userName, function (data)
+                {
+                   
+                    if(data=="true")
+                    {
+                        $('#err').text("Username already exists.");
+                    }
+                    else if(data=="false")
+                    {
+                        $('#err').text("Username does not exists.");
+                    }
+                   
+                });
+                
+
+            });
+         
+
+        });
+    </script>
+
+
+  
+</body>
+
+</html>
+

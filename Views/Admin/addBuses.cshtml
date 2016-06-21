@@ -1,0 +1,121 @@
+﻿  <!-- NAV SECTION -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">ANJAR <span class="glyphicon glyphicon glyphicon-road" aria-hidden="true"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="~/Admin/adminHome"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                <li><a href="~/Admin/editBuses">EDIT BUSES</a></li>
+                <li><a href="~/Admin/editTerminal">EDIT TERMINALS</a></li>
+                <li><a href="~/Admin/viewBookings">VIEW BOOKINGS</a></li>
+                <li><a href="~/Home/logout">LOGOUT</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<br><br><br>
+<br><br><br>
+<!--END NAV SECTION -->
+@using (Html.BeginForm())
+{
+
+
+    <fieldset>
+        <legend>Bus</legend>
+
+        <div>
+            <label>Bus Id</label>
+        </div>
+        <div>
+            <input id="busId" name="busId" type="number" value="" min="1" max="500"/>
+
+        </div>
+
+        <div>
+            <label>Total no Of Seats</label>
+        </div>
+        <div>
+            <input id="toNoOfSeats" name="toNoOfSeats" type="number" value="" />
+
+        </div>
+
+        <div>
+            <label>Deaparture Date and time</label>
+        </div>
+        <div>
+            <input id="depDateTime" name="depDateTime" type="datetime" value="" />
+
+        </div>
+        <div>
+            <label>Return Date and time</label>
+        </div>
+        <div>
+            <input id="retDateTime" name="retDateTime" type="datetime" value="" />
+
+        </div>
+        <div>
+            <label>Trip Type</label>
+        </div>
+        <div>
+        <input type="radio" id="oneway" name="oneway" value="One Way"/>One Way&nbsp;&nbsp;<input type="radio" id="round" name="round" value="Round" />Round Trip
+            </div>
+        <br>
+        <div>
+            <label>Origin</label>
+        </div>
+        <div>
+            <input id="origin" name="origin" type="text" value="" />
+            </div>
+        <div>
+            <label>Destination</label>
+        </div>
+        <div>
+            <input id="destination" name="destination" type="text" value="" />
+        </div>
+        <div>
+            <label>No OF seats Available</label>
+        </div>
+        <div>
+            <input id="aSeats" name="aSeats" type="number" value="" />
+        </div>
+        <div>
+            <label>Fare on one Seat</label>
+        </div>
+        <div>
+            <input id="fare" name="fare" type="number" value="" />
+        </div>
+        <div>
+            <label>Terminal</label>
+        </div>
+        <div>
+            <input id="terminal" name="terminal" type="text" value="" />
+        </div>
+        <p>
+            <input type="submit" value="Add Bus" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "editBuses")
+</div>
+<style>
+    body {
+        background: #76b852; /* fallback for old browsers */
+        background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+        background: -moz-linear-gradient(right, #76b852, #8DC26F);
+        background: -o-linear-gradient(right, #76b852, #8DC26F);
+        background: linear-gradient(to left, #76b852, #8DC26F);
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    </style>

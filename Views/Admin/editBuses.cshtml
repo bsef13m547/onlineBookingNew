@@ -1,0 +1,268 @@
+﻿
+@model List<EAD_Project.Models.Bus>
+
+<html lang="en">
+
+<body>
+    <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#">ANJAR <span class="glyphicon glyphicon glyphicon-road" aria-hidden="true"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Admin/adminHome"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a href="~/Admin/editBuses">EDIT BUSES</a></li>
+                    <li><a href="~/Admin/editTerminal">EDIT TERMINALS</a></li>
+                    <li><a href="~/Admin/viewBookings">VIEW BOOKINGS</a></li>
+                    <li><a href="~/Home/logout">LOGOUT</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--END NAV SECTION -->
+    <br><br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <!--add bus -->
+    <p class="myButton1" style="color:white">
+
+        @Html.ActionLink("Add Buses", "addBuses")
+    </p>
+    <br><br>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <th>Bus Id</th>
+                <th>T.Seats</th>
+                <th>DDT</th>
+                <th>RDT</th>
+                <th>Trip Type</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>A.Seats</th>
+                <th>Fare/seat</th>
+                <th>Terminal </th>
+                <th>Edit</th>
+                <th>Details</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+    </div>
+  <br>
+        <div class="tbl-content">
+            
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Bus_Id
+                            </td>
+                            <td>
+                                @item.TotalSeat
+                            </td>
+                            <td>
+                                @item.Dep_DateTime
+                            </td>
+                            <td>
+                                @item.Ret_DateTime
+                            </td>
+                            <td>
+                                @item.Trip_Type
+                            </td>
+                            <td>
+                                @item.Origin
+                            </td>
+                            <td>
+                                @item.Destination
+                            </td>
+                            <td>
+                                @item.noOfSeatAvailable
+                            </td>
+                            <td>
+                                @item.fareOneSeat
+                            </td>
+                            <td>
+                                @item.Terminal
+                            </td>
+                            <td>
+
+                                @Html.ActionLink("Edit", "updateBuses", new { id = item.Bus_Id })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "detailBuses", new { id = item.Bus_Id })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "deleteBuses", new { id = item.Bus_Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <!--end of add bus-->
+            <style>
+                h1 {
+                    font-size: 30px;
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
+
+                table {
+                    width: 100%;
+                    table-layout: fixed;
+                }
+
+                .tbl-header {
+                    background-color: rgba(255,255,255,0.3);
+                }
+
+                .tbl-content {
+                    height: 300px;
+                    overflow-x: auto;
+                    margin-top: 0px;
+                    border: 1px solid rgba(255,255,255,0.3);
+                }
+
+                th {
+                    padding: 20px 15px;
+                    text-align: left;
+                    font-weight: 500;
+                    font-size: 12px;
+                    color: #fff;
+                    text-transform: uppercase;
+                }
+
+                td {
+                    padding: 15px;
+                    text-align: left;
+                    vertical-align: middle;
+                    font-weight: 300;
+                    font-size: 12px;
+                    color: #fff;
+                    border-bottom: solid 1px rgba(255,255,255,0.1);
+                }
+
+                /* demo styles */
+
+
+
+                body {
+                    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+                    background: linear-gradient(to right, #25c481, #25b7c4);
+                    font-family: 'Roboto', sans-serif;
+                }
+
+                section {
+                    margin: 50px;
+                }
+
+
+                /* follow me template */
+                .made-with-love {
+                    margin-top: 40px;
+                    padding: 10px;
+                    clear: left;
+                    text-align: center;
+                    font-size: 10px;
+                    font-family: arial;
+                    color: #fff;
+                }
+
+                    .made-with-love i {
+                        font-style: normal;
+                        color: #F50057;
+                        font-size: 14px;
+                        position: relative;
+                        top: 2px;
+                    }
+
+                    .made-with-love a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+                        .made-with-love a:hover {
+                            text-decoration: underline;
+                        }
+
+
+                /* for custom scrollbar for webkit browser*/
+
+                ::-webkit-scrollbar {
+                    width: 6px;
+                }
+
+                ::-webkit-scrollbar-track {
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                }
+
+                ::-webkit-scrollbar-thumb {
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                }
+                /*reset*/
+                html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+                    margin: 0;
+                    padding: 0;
+                    border: 0;
+                    font-size: 100%;
+                    font: inherit;
+                    vertical-align: baseline;
+                }
+
+                article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+                    display: block;
+                }
+
+                body {
+                    line-height: 1;
+                }
+
+                ol, ul {
+                    list-style: none;
+                }
+
+                blockquote, q {
+                    quotes: none;
+                }
+
+                    blockquote:before, blockquote:after, q:before, q:after {
+                        content: '';
+                        content: none;
+                    }
+
+                table {
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                }
+            </style>
+            <script>
+                // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
+                $(window).on("load resize ", function () {
+                    var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+                    $('.tbl-header').css({ 'padding-right': scrollWidth });
+                }).resize();
+            </script>
+</body>
+
+</html>
+
